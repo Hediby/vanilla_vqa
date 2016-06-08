@@ -1,3 +1,4 @@
 datasets/*
 tensorflow-vgg16/*
 saved_models/*
+tf_log/*
