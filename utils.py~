@@ -1,0 +1,29 @@
+
+def load_vocab(vocab_path):
+    i2w = []
+    w2i = {}
+    for i,l in enumerate(open(vocab_path,'r',encoding='latin1')):
+        l = l.strip()
+        i2w.append(l)
+        w2i[l] = i
+    return i2w, w2i
+
+
+def load_dataset(idxs_path):
+    dataset = []
+    for l in open(idxs_path, 'r',encoding='latin1'):
+        dataset.append([int(i) for i in l.strip().split()])
+    return dataset
+
+def get_batch(begin,end,X,Y,
+              batch_size,max_q,Na):
+    Q = np.zeros((batch_size, max_q), 'int32')
+    mask = np.zeros((max_q,batch_size), 'int32')
+    for i,s in enumerate(X[begin:end]):
+        Q[i] = np.pad(s, (0,max_q-len(s)), 'constant')
+        mask[len(s)-1,i] = 1
+    ans = np.zeros((batch_size,Na),'int32')
+    for i,a in enumerate(Y[begin:end]):
+        ans[i,a] = 1
+    mask = mask[:,:,None]
+    return Q,mask,ans

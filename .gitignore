@@ -1,4 +1,6 @@
+core
 datasets/*
 tensorflow-vgg16/*
-saved_models/*
+model*/
+__pycache__/
 tf_log/*
