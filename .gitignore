@@ -1,6 +1,6 @@
 core
 datasets/*
+results/*
 tensorflow-vgg16/*
-model*/
+*.model
 __pycache__/
-tf_log/*
